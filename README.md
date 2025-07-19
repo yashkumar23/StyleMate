@@ -56,7 +56,7 @@ To run this notebook locally, you will need Python installed.
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/StyleMate.git
+git clone https://github.com/yashkumar23/StyleMate.git
 
 # 2. Navigate to the project directory
 cd stylemate
