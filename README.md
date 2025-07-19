@@ -1,4 +1,4 @@
-# 💳 StyleMate - An AI Powered Personalized Fashion Assistant
+# <img width="100" height="100" alt="image" src="https://github.com/user-attachments/assets/d6a37d32-eed4-4c38-81cf-ff32d859cea5" /> StyleMate - An AI Powered Personalized Fashion Assistant
 
 ## 📌 Project Overview & Task Objective
 
