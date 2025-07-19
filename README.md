@@ -1,5 +1,4 @@
-# <img width="100" height="100" alt="image" src="https://github.com/user-attachments/assets/d6a37d32-eed4-4c38-81cf-ff32d859cea5" /> 
-StyleMate - An AI Powered Personalized Fashion Assistant
+# StyleMate - An AI Powered Personalized Fashion Assistant
 
 ## 📌 Project Overview & Task Objective
 
@@ -24,16 +23,11 @@ The dataset contains full human body images equally distributed among male and f
 
 To run this notebook locally, you will need Python installed. 
 
-## 🚀 Approach
-
-My approach to develop StyleMate involved the following steps:
-
-
-
 ## 🧰 Technologies Used
 - P Y T H O N
 - N U M P Y
-- MA T P L O T L I B
+- M A T P L O T L I B
+- F l A S K
 - S E A B O R N
 - S C I K I T - L E A R N
 - M E D I A P I P E
@@ -52,10 +46,6 @@ My approach to develop StyleMate involved the following steps:
 <img width="714" height="991" alt="image" src="https://github.com/user-attachments/assets/ba602192-7d71-4ed8-bde1-3244ae65fa14" />
 
 <img width="940" height="449" alt="image" src="https://github.com/user-attachments/assets/fd2d46ce-24c4-40f3-a8cd-bc992a46e3b9" />
-
-
-
-
 
 
     
