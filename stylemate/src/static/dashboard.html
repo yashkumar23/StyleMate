@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - STYLEMATE</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* Left Section - Branding */
+        .left-section {
+            flex: 1;
+            background: linear-gradient(135deg, #008080 0%, #006666 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+            align-items: center;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .left-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="15" height="15" patternUnits="userSpaceOnUse"><path d="M 15 0 L 0 0 0 15" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.4;
+        }
+
+        .branding-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            filter: brightness(0) invert(1);
+        }
+
+        .branding-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .branding-subtitle {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        /* Right Section - Form */
+        .right-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 60px;
+            background: white;
+            max-width: 800px; /* Adjusted max-width for dashboard content */
+            position: relative;
+            overflow-y: auto; /* Enable scrolling for content */
+        }
+
+        .header {
+            display: flex;
+            justify-content: flex-end; /* Align user menu to the right */
+            align-items: center;
+            margin-bottom: 40px;
+            padding: 0;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .user-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #008080;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .user-avatar:hover {
+            background: #006666;
+            transform: scale(1.05);
+        }
+
+        .logout-btn {
+            background: #f1f3f4;
+            border: 2px solid #e1e5e9;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: #e1e5e9;
+            border-color: #ccc;
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .main-content {
+            /* No background or shadow needed here, handled by right-section */
+        }
+
+        .welcome-section {
+            text-align: left; /* Align text to left */
+            margin-bottom: 50px;
+        }
+
+        .welcome-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #008080, #006666);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .welcome-subtitle {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* Get Started Card */
+        .get-started-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .get-started-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 128, 128, 0.2);
+            border-color: #008080;
+        }
+
+        .get-started-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="80" fill="none" stroke="%23008080" stroke-width="2" opacity="0.1"/><circle cx="100" cy="100" r="60" fill="none" stroke="%23008080" stroke-width="2" opacity="0.1"/><circle cx="100" cy="100" r="40" fill="none" stroke="%23008080" stroke-width="2" opacity="0.1"/></svg>');
+            opacity: 0.3;
+        }
+
+        .get-started-content {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .get-started-text {
+            flex: 1;
+        }
+
+        .get-started-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .get-started-description {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .get-started-illustration {
+            width: 120px;
+            height: 120px;
+            /* background: linear-gradient(135deg, #008080, #006666); */
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .get-started-illustration img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 20px;
+        }
+
+        .arrow-icon {
+            margin-left: auto;
+            font-size: 24px;
+            color: #008080;
+            transition: transform 0.3s ease;
+        }
+
+        .get-started-card:hover .arrow-icon {
+            transform: translateX(5px);
+        }
+
+        /* Feature Cards Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            border: 2px solid #f1f3f4;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 128, 128, 0.15);
+            border-color: #008080;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #008080, #00a0a0);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #008080, #006666);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .feature-icon img {
+            max-width: 80%;
+            max-height: 80%;
+            filter: brightness(0) invert(1); /* This makes the icon white */
+        }
+
+        .feature-content {
+            flex: 1;
+        }
+
+        .feature-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .feature-description {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .feature-arrow {
+            margin-left: auto;
+            font-size: 20px;
+            color: #008080;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover .feature-arrow {
+            transform: translateX(3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .right-section {
+                max-width: none;
+            }
+        }
+
+        @media (max-width: 968px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .left-section {
+                padding: 40px 30px;
+                min-height: 300px;
+            }
+            
+            .right-section {
+                padding: 40px 30px;
+            }
+            
+            .branding-title {
+                font-size: 36px;
+            }
+            
+            .form-title {
+                font-size: 28px;
+            }
+            
+            .upload-area {
+                padding: 30px 15px;
+                min-height: 160px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .header {
+            animation: slideInLeft 0.6s ease;
+        }
+
+        .welcome-section {
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .get-started-card {
+            animation: fadeInUp 1s ease;
+        }
+
+        .feature-card:nth-child(1) {
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .feature-card:nth-child(2) {
+            animation: fadeInUp 1.4s ease;
+        }
+
+        .feature-card:nth-child(3) {
+            animation: fadeInUp 1.6s ease;
+        }
+
+        /* Loading states */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 24px;
+            height: 24px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #008080;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Left Section - Branding -->
+    <div class="left-section">
+        <div class="branding-content">
+            <div class="logo">
+                <img src="/hanger-icon.png" alt="Hanger" class="logo-icon">
+                <span>StyleMate</span>
+            </div>
+            
+            <h1 class="branding-title">Dashboard</h1>
+            <p class="branding-subtitle">Your personalized fashion hub</p>
+        </div>
+    </div>
+
+    <!-- Right Section - Dashboard Content -->
+    <div class="right-section">
+        <!-- Header -->
+        <header class="header">
+            <div class="user-menu">
+                <div class="user-avatar" id="userAvatar">U</div>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Welcome Section -->
+            <section class="welcome-section">
+                <h1 class="welcome-title">Welcome to StyleMate!</h1>
+                <p class="welcome-subtitle">Find your new look with the help of your personal AI stylist</p>
+            </section>
+
+            <!-- Get Started Card -->
+            <div class="get-started-card" onclick="dummyAction()">
+                <div class="get-started-content">
+                    <div class="get-started-text">
+                        <h2 class="get-started-title">Get Started</h2>
+                        <p class="get-started-description">Set up your profile to receive personalized recommendations based on your body type and style preferences</p>
+                    </div>
+                    <div class="get-started-illustration"><img src="/woman_illustration_transparent.png" alt="Woman Illustration"></div>
+                    <div class="arrow-icon">→</div>
+                </div>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="features-grid">
+                <div class="feature-card" onclick="navigateToRecommendations()">
+                    <div class="feature-header">
+                        <div class="feature-icon"><img src="/hanger-icon.png" alt="Hanger Icon"></div>
+                        <div class="feature-content">
+                            <h3 class="feature-title">Recommendations</h3>
+                            <p class="feature-description">Selected for you</p>
+                        </div>
+                        <div class="feature-arrow">›</div>
+                    </div>
+                </div>
+
+                <div class="feature-card" onclick="navigateToOutfitIdeas()">
+                    <div class="feature-header">
+                        <div class="feature-icon"><img src="/tshirt_icon_white.png" alt="T-Shirt Icon"></div>
+                        <div class="feature-content">
+                            <h3 class="feature-title">Outfit Ideas</h3>
+                            <p class="feature-description">Inspiration for your look</p>
+                        </div>
+                        <div class="feature-arrow">›</div>
+                    </div>
+                </div>
+
+                <div class="feature-card" onclick="navigateToTrends()">
+                    <div class="feature-header">
+                        <div class="feature-icon"><img src="/trend_arrow_icon_008080.png" alt="Trend Arrow Icon"></div>
+                        <div class="feature-content">
+                            <h3 class="feature-title">Trends</h3>
+                            <p class="feature-description">What's trending now</p>
+                        </div>
+                        <div class="feature-arrow">›</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Initialize user avatar
+        function initializeUserAvatar() {
+            const userAvatar = document.getElementById('userAvatar');
+            
+            // Try to get user info from session storage or make API call
+            fetch('/api/user', {
+                method: 'GET',
+                credentials: 'include'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success && data.user) {
+                    const firstName = data.user.first_name || 'User';
+                    userAvatar.textContent = firstName.charAt(0).toUpperCase();
+                    userAvatar.title = `${firstName} ${data.user.last_name || ''}`.trim();
+                }
+            })
+            .catch(error => {
+                console.log('User info not available:', error);
+                userAvatar.textContent = 'U';
+            });
+        }
+
+        // Navigation functions
+        function dummyAction() {
+            alert('Get Started button is a dummy for now!');
+        }
+
+        function navigateToRecommendations() {
+            const card = event.currentTarget;
+            card.classList.add('loading');
+            
+            setTimeout(() => {
+                window.location.href = '/analysis.html';
+            }, 500);
+        }
+
+        function navigateToOutfitIdeas() {
+            const card = event.currentTarget;
+            card.classList.add('loading');
+            
+            setTimeout(() => {
+                window.location.href = '/favorites.html';
+            }, 500);
+        }
+
+        function navigateToTrends() {
+            const card = event.currentTarget;
+            card.classList.add('loading');
+            
+            setTimeout(() => {
+                window.location.href = '/blog.html';
+            }, 500);
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                fetch('/api/logout', {
+                    method: 'POST',
+                    credentials: 'include'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = '/';
+                    } else {
+                        alert('Logout failed. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Logout error:', error);
+                    // Fallback: redirect anyway
+                    window.location.href = '/';
+                });
+            }
+        }
+
+        // Add hover effects for better interactivity
+        document.querySelectorAll('.feature-card, .get-started-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('loading')) {
+                    this.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeUserAvatar();
+            
+            // Add subtle parallax effect to background
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const parallax = document.body;
+                const speed = scrolled * 0.5;
+                parallax.style.backgroundPosition = `center ${speed}px`;
+            });
+        });
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                const focused = document.activeElement;
+                if (focused.classList.contains('feature-card') || focused.classList.contains('get-started-card')) {
+                    e.preventDefault();
+                    focused.click();
+                }
+            }
+        });
+
+        // Make cards focusable for accessibility
+        document.querySelectorAll('.feature-card, .get-started-card').forEach(card => {
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('role', 'button');
+        });
+    </script>
+</body>
+</html>
+

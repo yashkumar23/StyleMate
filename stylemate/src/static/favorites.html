@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Favorites - STYLEMATE</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+        }
+
+        .left-section {
+            flex: 1;
+            background: linear-gradient(135deg, #008080 0%, #006666 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+            max-width: 400px;
+        }
+
+        .left-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="15" height="15" patternUnits="userSpaceOnUse"><path d="M 15 0 L 0 0 0 15" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.4;
+        }
+
+        .branding-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            filter: brightness(0) invert(1);
+        }
+
+        .branding-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .branding-subtitle {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 3;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-2px);
+        }
+
+        .right-section {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
+            background: white;
+            overflow-y: auto;
+        }
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e1e5e9;
+        }
+
+        .header-info h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .header-info p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .favorites-count {
+            background: #008080;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 80px 40px;
+            color: #666;
+        }
+
+        .empty-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .empty-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .empty-subtitle {
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .empty-action {
+            background: #008080;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .empty-action:hover {
+            background: #006666;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 128, 128, 0.3);
+        }
+
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .favorite-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .favorite-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: #008080;
+        }
+
+        .dress-image {
+            width: 100%;
+            height: 250px;
+            background: #e1e5e9;
+            display: flex; /* Changed to flexbox for centering */
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            font-size: 48px;
+            color: #666;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer; /* Make it clickable */
+        }
+
+        .dress-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Changed from 'cover' to 'contain' for better centering visibility */
+            transition: transform 0.3s ease;
+        }
+
+        .dress-image img:hover {
+            transform: scale(1.05);
+        }
+
+        .image-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .image-placeholder-icon {
+            font-size: 48px;
+            margin-bottom: 8px;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .dress-type {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .dress-size {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .card-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .added-date {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .remove-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .remove-btn:hover {
+            background: #c82333;
+            transform: scale(1.05);
+        }
+
+        .remove-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #008080;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        /* Lightbox Modal Styles */
+        #lightboxModal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.85); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+
+        #lightboxModal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+        }
+
+        #lightboxModal.closeable {
+            cursor: pointer;
+        }
+
+        @media (max-width: 968px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .left-section {
+                max-width: none;
+                padding: 40px 30px;
+                min-height: 200px;
+            }
+            
+            .right-section {
+                padding: 30px 20px;
+            }
+            
+            .content-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .branding-title {
+                font-size: 36px;
+            }
+            
+            .header-info h1 {
+                font-size: 28px;
+            }
+            
+            .favorites-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .back-btn {
+                top: 20px;
+                left: 20px;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .favorite-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .favorite-card:nth-child(2) { animation-delay: 0.1s; }
+        .favorite-card:nth-child(3) { animation-delay: 0.2s; }
+        .favorite-card:nth-child(4) { animation-delay: 0.3s; }
+        .favorite-card:nth-child(5) { animation-delay: 0.4s; }
+        .favorite-card:nth-child(6) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <div class="left-section">
+        <button class="back-btn" onclick="goBack()">←</button>
+        <div class="branding-content">
+            <div class="logo">
+                <img src="/hanger-icon.png" alt="Hanger" class="logo-icon">
+                <span>StyleMate</span>
+            </div>
+            <h1 class="branding-title">My Favorites</h1>
+            <p class="branding-subtitle">Your curated collection of perfect styles</p>
+        </div>
+    </div>
+
+    <div class="right-section">
+        <div class="alert alert-success" id="successAlert"></div>
+        <div class="alert alert-error" id="errorAlert"></div>
+        <div class="alert alert-info" id="infoAlert"></div>
+
+        <div class="content-header">
+            <div class="header-info">
+                <h1>My Favorite Dresses</h1>
+                <p>Manage your saved style recommendations</p>
+            </div>
+            <div class="favorites-count" id="favoritesCount">
+                0 Items
+            </div>
+        </div>
+
+        <div class="loading" id="loadingState">
+            <div class="spinner"></div>
+            <p>Loading your favorites...</p>
+        </div>
+
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <div class="empty-icon">💔</div>
+            <h2 class="empty-title">No Favorites Yet</h2>
+            <p class="empty-subtitle">
+                Start building your style collection by adding dresses to your favorites.<br>
+                Analyze your body type to get personalized recommendations!
+            </p>
+            <button class="empty-action" onclick="startAnalysis()">
+                Get Style Recommendations
+            </button>
+        </div>
+
+        <div class="favorites-grid" id="favoritesGrid"></div>
+    </div>
+
+    <div id="lightboxModal" class="closeable">
+        <img id="lightboxImage" src="" alt="Full Image">
+    </div>
+
+    <script>
+        let favorites = [];
+        let isLoading = false;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFavorites();
+            
+            const lightboxModal = document.getElementById("lightboxModal");
+            const lightboxImage = document.getElementById("lightboxImage");
+            
+            // Close lightbox when clicked
+            lightboxModal.addEventListener("click", () => {
+                lightboxModal.style.display = "none";
+                lightboxImage.src = ""; // Clear image source
+            });
+        });
+
+        function loadFavorites() {
+            showLoading(true);
+            
+            fetch('/api/favorites', {
+                method: 'GET',
+                credentials: 'include'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load favorites');
+                }
+                return response.json();
+            })
+            .then(data => {
+                showLoading(false);
+                
+                if (data && data.favorites) {
+                    favorites = data.favorites;
+                    updateFavoritesDisplay();
+                    updateFavoritesCount();
+                    
+                    if (favorites.length === 0) {
+                        showEmptyState();
+                    }
+                } else {
+                    showAlert('error', data.message || 'Failed to load favorites');
+                    showEmptyState();
+                }
+            })
+            .catch(error => {
+                showLoading(false);
+                console.error('Error loading favorites:', error);
+                showAlert('error', error.message || 'An error occurred while loading your favorites');
+                showEmptyState();
+            });
+        }
+
+        function getImageUrl(imageUrl) {
+            if (!imageUrl) {
+                return null;
+            }
+            
+            console.log('Original image URL:', imageUrl);
+            
+            // If it's already a full URL (starts with http/https), use it as is
+            if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+                console.log('Using full URL:', imageUrl);
+                return imageUrl;
+            }
+            
+            // If it starts with a slash, it's an absolute path from the root
+            if (imageUrl.startsWith('/')) {
+                console.log('Using absolute path:', imageUrl);
+                return imageUrl;
+            }
+            
+            // If it doesn't start with a slash, assume it's a relative path and prepend with /
+            const finalUrl = '/' + imageUrl;
+            console.log('Using relative path, converted to:', finalUrl);
+            return finalUrl;
+        }
+
+        function handleImageError(imgElement) {
+            console.log('Image failed to load:', imgElement.src);
+            const placeholder = document.createElement('div');
+            placeholder.className = 'image-placeholder';
+            placeholder.innerHTML = `
+                <div class="image-placeholder-icon">👗</div>
+                <div>Image not found</div>
+            `;
+            imgElement.parentElement.replaceChild(placeholder, imgElement);
+        }
+
+        function handleImageLoad(imgElement) {
+            console.log('Image loaded successfully:', imgElement.src);
+        }
+
+        function createImageElement(favorite) {
+            const imageUrl = getImageUrl(favorite.dress_image_url);
+            
+            if (!imageUrl) {
+                return `
+                    <div class="image-placeholder">
+                        <div class="image-placeholder-icon">👗</div>
+                        <div>No Image URL</div>
+                    </div>
+                `;
+            }
+            
+            // Create a unique ID for this image (not strictly needed now, but good practice)
+            const imageId = 'img_' + Math.random().toString(36).substr(2, 9);
+            
+            return `
+                <img id="${imageId}" 
+                     src="${imageUrl}" 
+                     alt="${favorite.dress_type || 'Dress'}" 
+                     onload="handleImageLoad(this)"
+                     onerror="handleImageError(this)"
+                     data-full-image="${imageUrl}" /* Store full image URL for lightbox */
+                />
+            `;
+        }
+
+        function updateFavoritesDisplay() {
+            const favoritesGrid = document.getElementById('favoritesGrid');
+            const lightboxModal = document.getElementById("lightboxModal");
+            const lightboxImage = document.getElementById("lightboxImage");
+            
+            if (favorites.length === 0) {
+                favoritesGrid.innerHTML = '';
+                return;
+            }
+
+            console.log('Displaying favorites:', favorites);
+
+            favoritesGrid.innerHTML = favorites.map(favorite => `
+                <div class="favorite-card" data-favorite-id="${favorite.id}">
+                    <div class="dress-image">
+                        ${createImageElement(favorite)}
+                    </div>
+                    <div class="card-content">
+                        <div class="dress-type">${favorite.dress_type || 'Unknown Type'}</div>
+                        <div class="dress-size">Size: ${favorite.dress_size || 'Unknown'}</div>
+                        <div class="card-actions">
+                            <div class="added-date">
+                                Added ${formatDate(favorite.created_at)}
+                            </div>
+                            <button class="remove-btn" onclick="removeFavorite('${favorite.id}')">
+                                🗑️ Remove
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Add click listener to dress images for lightbox after they are rendered
+            document.querySelectorAll('.dress-image img').forEach(img => {
+                img.addEventListener('click', (e) => {
+                    const fullImageUrl = e.target.dataset.fullImage;
+                    if (fullImageUrl) {
+                        lightboxImage.src = fullImageUrl;
+                        lightboxModal.style.display = 'flex'; // Use flex to center the image
+                    }
+                });
+            });
+        }
+
+        function updateFavoritesCount() {
+            const countElement = document.getElementById('favoritesCount');
+            countElement.textContent = `${favorites.length} ${favorites.length === 1 ? 'Item' : 'Items'}`;
+        }
+
+        function removeFavorite(favoriteId) {
+            if (isLoading) return;
+            
+            if (!confirm('Are you sure you want to remove this dress from your favorites?')) {
+                return;
+            }
+
+            isLoading = true;
+            const removeBtn = event.target;
+            const originalText = removeBtn.innerHTML;
+            removeBtn.innerHTML = '⏳ Removing...';
+            removeBtn.disabled = true;
+
+            fetch(`/api/favorites/remove/${favoriteId}`, {
+                method: 'POST',
+                credentials: 'include'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to remove favorite');
+                }
+                return response.json();
+            })
+            .then(data => {
+                isLoading = false;
+                
+                if (data.status === 'ok') {
+                    favorites = favorites.filter(fav => fav.id != favoriteId);
+                    const card = document.querySelector(`[data-favorite-id="${favoriteId}"]`);
+                    if (card) {
+                        card.style.transform = 'scale(0)';
+                        card.style.opacity = '0';
+                        setTimeout(() => {
+                            card.remove();
+                            updateFavoritesCount();
+                            if (favorites.length === 0) showEmptyState();
+                        }, 300);
+                    }
+                    showAlert('success', 'Dress removed from favorites');
+                } else {
+                    removeBtn.innerHTML = originalText;
+                    removeBtn.disabled = false;
+                    throw new Error(data.message || 'Failed to remove favorite');
+                }
+            })
+            .catch(error => {
+                isLoading = false;
+                removeBtn.innerHTML = originalText;
+                removeBtn.disabled = false;
+                console.error('Error removing favorite:', error);
+                showAlert('error', error.message || 'An error occurred while removing the favorite');
+            });
+        }
+
+        function showLoading(show) {
+            const loadingState = document.getElementById('loadingState');
+            const favoritesGrid = document.getElementById('favoritesGrid');
+            const emptyState = document.getElementById('emptyState');
+            
+            if (show) {
+                loadingState.style.display = 'block';
+                favoritesGrid.style.display = 'none';
+                emptyState.style.display = 'none';
+            } else {
+                loadingState.style.display = 'none';
+                favoritesGrid.style.display = 'grid';
+            }
+        }
+
+        function showEmptyState() {
+            document.getElementById('emptyState').style.display = 'block';
+            document.getElementById('favoritesGrid').style.display = 'none';
+        }
+
+        function showAlert(type, message) {
+            const alertElement = document.getElementById(`${type}Alert`);
+            alertElement.textContent = message;
+            alertElement.style.display = 'block';
+            setTimeout(() => alertElement.style.display = 'none', 5000);
+            
+            // Scroll to top to show alert
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return 'Unknown';
+            
+            try {
+                const date = new Date(dateString);
+                const now = new Date();
+                const diffDays = Math.ceil((now - date) / (1000 * 60 * 60 * 24));
+                
+                if (diffDays === 1) return 'today';
+                if (diffDays <= 7) return `${diffDays} days ago`;
+                return date.toLocaleDateString();
+            } catch (e) {
+                return 'Unknown';
+            }
+        }
+
+        function startAnalysis() {
+            window.location.href = '/';
+        }
+
+        function goBack() {
+            window.location.href = '/';
+        }
+    </script>
+</body>
+</html>

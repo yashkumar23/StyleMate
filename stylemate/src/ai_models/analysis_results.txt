@@ -1,0 +1,34 @@
+
+--- Body Measurements Results ---
+User Height: 165.00 cm
+Shoulder Width Cm: 42.04 cm
+Arm Length Cm: 58.43 cm
+Leg Length Cm: 94.85 cm
+Waist Circumference Cm: 87.60 cm
+Hip Circumference Cm: 86.92 cm
+Chest Circumference Cm: 98.41 cm
+Thigh Circumference Cm: 56.01 cm
+Neck Waist Length Front Cm: 48.42 cm
+Neck Circumference Cm: 37.69 cm
+---------------------------------
+Results for Front View Image:
+  Skin Tone: Light Cool
+  Detected Gender: Female (Confidence: 0.95)
+  Dominant Color (Hex): #CDA49B
+  Recommendations for Light Cool:
+    Best colors to wear: Lavender, Pink, Blue, Teal, Silver, Grey, Navy, Purple, Green
+    Avoid: Gold, Orange, Mustard, Olive, Brown, Khaki
+------------------------------------------
+
+--- Garment Size Categorization ---
+  Lehnga: L
+  Saree Blouse: XL
+  Women Kurta: XL
+  Gown: XL
+-----------------------------------
+
+--- Final Garment Size Recommendations ---
+Lehnga: L
+Saree Blouse: XL
+Women Kurta: XL
+Gown: XL

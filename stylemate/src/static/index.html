@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STYLEMATE - Your Fashion Assistant</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #008080;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* Left Side - Content */
+        .left-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 60px;
+            position: relative;
+            max-width: 600px;
+        }
+
+        /* Logo */
+        .logo {
+            position: absolute;
+            top: 40px;
+            left: 60px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-icon {
+            width: 28px;
+            height: 28px;
+            filter: brightness(0) invert(1);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 500px;
+        }
+
+        .tagline {
+            font-size: 16px;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .main-title {
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .main-title .highlight {
+            background: linear-gradient(135deg, #ffffff 0%, #e0f7fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            background: white;
+            color: #008080;
+            border: none;
+            padding: 18px 36px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+            background: #f8f9fa;
+        }
+
+        /* Right Side - Visual */
+        .right-section {
+            flex: 1;
+            background: linear-gradient(135deg, #006666 0%, #004d4d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .right-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        }
+
+        .visual-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .fashion-icon {
+            font-size: 120px;
+            margin-bottom: 30px;
+            opacity: 0.8;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .visual-text {
+            font-size: 24px;
+            font-weight: 600;
+            opacity: 0.9;
+            margin-bottom: 12px;
+        }
+
+        .visual-subtext {
+            font-size: 16px;
+            opacity: 0.7;
+            max-width: 300px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .logo {
+            animation: slideInLeft 0.8s ease;
+        }
+
+        .main-content {
+            animation: fadeInUp 1s ease;
+        }
+
+        .visual-content {
+            animation: slideInRight 1.2s ease;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            body {
+                flex-direction: column;
+                overflow-y: auto;
+            }
+            
+            .left-section {
+                padding: 60px 40px;
+                max-width: none;
+                min-height: 60vh;
+            }
+            
+            .right-section {
+                min-height: 40vh;
+            }
+            
+            .logo {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 40px;
+            }
+            
+            .main-title {
+                font-size: 48px;
+            }
+            
+            .subtitle {
+                font-size: 18px;
+            }
+            
+            .fashion-icon {
+                font-size: 80px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .left-section {
+                padding: 40px 30px;
+            }
+            
+            .main-title {
+                font-size: 36px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .cta-button {
+                padding: 16px 32px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Left Section -->
+    <div class="left-section">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="/hanger-icon.png" alt="Hanger" class="logo-icon">
+            <span>StyleMate</span>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <p class="tagline">Your Personalized Fashion Assistant</p>
+            <h1 class="main-title">Your <span class="highlight">FASHION</span> Assistant</h1>
+            <p class="subtitle">Discover your perfect style with AI-powered recommendations tailored to your body type, skin tone, and personal preferences.</p>
+            <button class="cta-button" onclick="getStarted()">Get Started →</button>
+        </div>
+    </div>
+
+    <!-- Right Section -->
+    <div class="right-section">
+        <div class="visual-content">
+            <div class="fashion-icon">👗</div>
+            <h2 class="visual-text">AI-Powered Styling</h2>
+            <p class="visual-subtext">Advanced algorithms analyze your features to recommend the perfect outfits just for you</p>
+        </div>
+    </div>
+
+    <script>
+        function getStarted() {
+            // Add loading animation
+            const button = document.querySelector('.cta-button');
+            const originalText = button.textContent;
+            button.textContent = 'Loading...';
+            button.style.opacity = '0.7';
+            
+            setTimeout(() => {
+                window.location.href = '/signin.html';
+            }, 800);
+        }
+
+        // Add subtle parallax effect
+        document.addEventListener('mousemove', function(e) {
+            const rightSection = document.querySelector('.right-section');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            rightSection.style.transform = `translate(${x * 10}px, ${y * 10}px)`;
+        });
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                if (document.activeElement === document.querySelector('.cta-button')) {
+                    e.preventDefault();
+                    getStarted();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>StyleMate Analysis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Body Analysis - STYLEMATE</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* Left Side - Branding */
+        .left-section {
+            flex: 1;
+            background: linear-gradient(135deg, #008080 0%, #006666 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .left-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="15" height="15" patternUnits="userSpaceOnUse"><path d="M 15 0 L 0 0 0 15" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.4;
+        }
+
+        .branding-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            filter: brightness(0) invert(1);
+        }
+
+        .branding-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .branding-subtitle {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .analysis-steps {
+            list-style: none;
+            text-align: left;
+            max-width: 320px;
+        }
+
+        .analysis-steps li {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .step-number {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        /* Right Side - Form */
+        .right-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px;
+            background: white;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background: #008080;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 3;
+        }
+
+        .back-btn:hover {
+            background: #006666;
+            transform: translateX(-2px);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-subtitle {
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 32px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 12px;
+            color: #333;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .upload-area {
+            border: 3px dashed #e1e5e9;
+            border-radius: 16px;
+            padding: 40px 20px;
+            text-align: center;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .upload-area:hover {
+            border-color: #008080;
+            background: #f0fffe;
+        }
+
+        .upload-area.dragover {
+            border-color: #008080;
+            background: #e6fffe;
+            transform: scale(1.02);
+        }
+
+        .upload-area.has-file {
+            border-color: #2ed573;
+            background: #f0fff4;
+        }
+
+        .upload-icon {
+            font-size: 48px;
+            color: #ccc;
+            margin-bottom: 16px;
+        }
+
+        .upload-area.has-file .upload-icon {
+            color: #2ed573;
+        }
+
+        .upload-text {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .upload-subtext {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .file-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .preview-image {
+            max-width: 100%;
+            max-height: 150px;
+            border-radius: 8px;
+            margin-top: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .height-input-group {
+            position: relative;
+        }
+
+        .height-input {
+            width: 100%;
+            padding: 18px 24px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .height-input:focus {
+            outline: none;
+            border-color: #008080;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(0, 128, 128, 0.1);
+        }
+
+        .height-unit {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .analyze-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #008080 0%, #006666 100%);
+            color: white;
+            border: none;
+            padding: 20px;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .analyze-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0, 128, 128, 0.4);
+        }
+
+        .analyze-btn:hover::before {
+            left: 100%;
+        }
+
+        .analyze-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .analyze-btn:disabled::before {
+            display: none;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #e1e5e9;
+            border-radius: 2px;
+            margin-top: 16px;
+            overflow: hidden;
+            display: none;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #008080, #00a0a0);
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .alert {
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            font-size: 14px;
+            display: none;
+            border-left: 4px solid;
+        }
+
+        .alert-error {
+            background: #ffe6e6;
+            color: #d63031;
+            border-color: #ff7675;
+        }
+
+        .alert-success {
+            background: #e6ffe6;
+            color: #00b894;
+            border-color: #00cec9;
+        }
+
+        .alert-info {
+            background: #e6f3ff;
+            color: #0984e3;
+            border-color: #74b9ff;
+        }
+
+        /* Loading spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 12px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .right-section {
+                max-width: none;
+            }
+        }
+
+        @media (max-width: 968px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .left-section {
+                padding: 40px 30px;
+                min-height: 300px;
+            }
+            
+            .right-section {
+                padding: 40px 30px;
+            }
+            
+            .branding-title {
+                font-size: 36px;
+            }
+            
+            .form-title {
+                font-size: 28px;
+            }
+            
+            .upload-area {
+                padding: 30px 15px;
+                min-height: 160px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .branding-content > *,
+        .form-header > *,
+        .form-group,
+        .analyze-btn {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .branding-title {
+            animation-delay: 0.1s;
+        }
+
+        .branding-subtitle {
+            animation-delay: 0.2s;
+        }
+
+        .analysis-steps {
+            animation-delay: 0.3s;
+        }
+
+        .form-title {
+            animation-delay: 0.1s;
+        }
+
+        .form-subtitle {
+            animation-delay: 0.2s;
+        }
+
+        .upload-area:hover {
+            animation: pulse 2s infinite;
+        }
+
+        /* File validation styles */
+        .file-error {
+            color: #ff4757;
+            font-size: 12px;
+            margin-top: 8px;
+            display: none;
+        }
+
+        .upload-area.error {
+            border-color: #ff4757;
+            background: #fff5f5;
+        }
+
+        .upload-area.error .upload-icon {
+            color: #ff4757;
+        }
+    </style>
+</head>
+<body>
+    <!-- Left Section - Branding -->
+    <div class="left-section">
+        <div class="branding-content">
+            <div class="logo">
+                <img src="/hanger-icon.png" alt="Hanger" class="logo-icon">
+                <span>StyleMate</span>
+            </div>
+            
+            <h1 class="branding-title">AI Body Analysis</h1>
+            <p class="branding-subtitle">Get personalized style recommendations</p>
+            
+            <ul class="analysis-steps">
+                <li>
+                    <div class="step-number">1</div>
+                    <span>Upload your front-facing photo</span>
+                </li>
+                <li>
+                    <div class="step-number">2</div>
+                    <span>Upload your side-view photo</span>
+                </li>
+                <li>
+                    <div class="step-number">3</div>
+                    <span>Enter your height measurement</span>
+                </li>
+                <li>
+                    <div class="step-number">4</div>
+                    <span>Get AI-powered style analysis</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Right Section - Form -->
+    <div class="right-section">
+        <button class="back-btn" onclick="window.history.back()">←</button>
+        
+        <div class="form-header">
+            <h2 class="form-title">Body Analysis</h2>
+            <p class="form-subtitle">Upload your photos and measurements for personalized recommendations</p>
+        </div>
+
+        <form id="analysisForm">
+            <div class="alert alert-error" id="errorAlert"></div>
+            <div class="alert alert-success" id="successAlert"></div>
+            <div class="alert alert-info" id="infoAlert"></div>
+
+            <!-- Image Upload Row -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="frontImage">Front View Photo</label>
+                    <div class="upload-area" id="frontUploadArea">
+                        <div class="upload-icon">📷</div>
+                        <div class="upload-text">Click to upload or drag & drop</div>
+                        <div class="upload-subtext">JPG, PNG up to 10MB</div>
+                        <input type="file" id="frontImage" name="frontImage" class="file-input" accept="image/*" required>
+                        <div class="file-error" id="frontImageError"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="sideImage">Side View Photo</label>
+                    <div class="upload-area" id="sideUploadArea">
+                        <div class="upload-icon">📷</div>
+                        <div class="upload-text">Click to upload or drag & drop</div>
+                        <div class="upload-subtext">JPG, PNG up to 10MB</div>
+                        <input type="file" id="sideImage" name="sideImage" class="file-input" accept="image/*" required>
+                        <div class="file-error" id="sideImageError"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Height Input -->
+            <div class="form-group">
+                <label for="height">Height</label>
+                <div class="height-input-group">
+                    <input type="number" id="height" name="height" class="height-input" 
+                           placeholder="170" min="100" max="250" step="0.1" required>
+                    <span class="height-unit">cm</span>
+                </div>
+            </div>
+
+            <!-- Analyze Button -->
+            <button type="submit" class="analyze-btn" id="analyzeBtn">
+                🔍 Analyze My Style
+            </button>
+            
+            <div class="progress-bar" id="progressBar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Form elements
+        const form = document.getElementById('analysisForm');
+        const frontImageInput = document.getElementById('frontImage');
+        const sideImageInput = document.getElementById('sideImage');
+        const heightInput = document.getElementById('height');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const progressBar = document.getElementById('progressBar');
+        const progressFill = document.getElementById('progressFill');
+        
+        // Upload areas
+        const frontUploadArea = document.getElementById('frontUploadArea');
+        const sideUploadArea = document.getElementById('sideUploadArea');
+        
+        // Alert elements
+        const errorAlert = document.getElementById('errorAlert');
+        const successAlert = document.getElementById('successAlert');
+        const infoAlert = document.getElementById('infoAlert');
+
+        // Show/hide alerts
+        function showAlert(type, message) {
+            const alerts = [errorAlert, successAlert, infoAlert];
+            alerts.forEach(alert => alert.style.display = 'none');
+            
+            let targetAlert;
+            switch(type) {
+                case 'error': targetAlert = errorAlert; break;
+                case 'success': targetAlert = successAlert; break;
+                case 'info': targetAlert = infoAlert; break;
+            }
+            
+            if (targetAlert) {
+                targetAlert.textContent = message;
+                targetAlert.style.display = 'block';
+                
+                // Auto-hide after 5 seconds
+                setTimeout(() => {
+                    targetAlert.style.display = 'none';
+                }, 5000);
+            }
+        }
+
+        // File validation
+        function validateFile(file, errorElementId) {
+            const errorElement = document.getElementById(errorElementId);
+            const maxSize = 10 * 1024 * 1024; // 10MB
+            const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+            
+            if (!file) {
+                errorElement.textContent = 'Please select a file';
+                errorElement.style.display = 'block';
+                return false;
+            }
+            
+            if (file.size > maxSize) {
+                errorElement.textContent = 'File size must be less than 10MB';
+                errorElement.style.display = 'block';
+                return false;
+            }
+            
+            if (!allowedTypes.includes(file.type)) {
+                errorElement.textContent = 'Please upload a valid image file (JPG, PNG, WebP)';
+                errorElement.style.display = 'block';
+                return false;
+            }
+            
+            errorElement.style.display = 'none';
+            return true;
+        }
+
+        // Handle file upload
+        function handleFileUpload(input, uploadArea) {
+            const file = input.files[0];
+            const errorId = input.id + 'Error';
+            
+            if (file && validateFile(file, errorId)) {
+                uploadArea.classList.add('has-file');
+                uploadArea.classList.remove('error');
+                
+                // Show preview
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const existingPreview = uploadArea.querySelector('.preview-image');
+                    if (existingPreview) {
+                        existingPreview.remove();
+                    }
+                    
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.className = 'preview-image';
+                    img.alt = 'Preview';
+                    
+                    uploadArea.appendChild(img);
+                    
+                    // Update upload text
+                    const uploadText = uploadArea.querySelector('.upload-text');
+                    const uploadSubtext = uploadArea.querySelector('.upload-subtext');
+                    uploadText.textContent = file.name;
+                    uploadSubtext.textContent = `${(file.size / 1024 / 1024).toFixed(1)} MB`;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                uploadArea.classList.remove('has-file');
+                uploadArea.classList.add('error');
+            }
+        }
+
+        // Drag and drop functionality
+        function setupDragAndDrop(uploadArea, input) {
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, () => {
+                    uploadArea.classList.add('dragover');
+                }, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, () => {
+                    uploadArea.classList.remove('dragover');
+                }, false);
+            });
+
+            uploadArea.addEventListener('drop', (e) => {
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    input.files = files;
+                    handleFileUpload(input, uploadArea);
+                }
+            }, false);
+        }
+
+        // File input event listeners
+        frontImageInput.addEventListener('change', () => {
+            handleFileUpload(frontImageInput, frontUploadArea);
+        });
+
+        sideImageInput.addEventListener('change', () => {
+            handleFileUpload(sideImageInput, sideUploadArea);
+        });
+
+        // Setup drag and drop
+        setupDragAndDrop(frontUploadArea, frontImageInput);
+        setupDragAndDrop(sideUploadArea, sideImageInput);
+
+        // Form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate all inputs
+            let isValid = true;
+            
+            if (!validateFile(frontImageInput.files[0], 'frontImageError')) {
+                isValid = false;
+            }
+            
+            if (!validateFile(sideImageInput.files[0], 'sideImageError')) {
+                isValid = false;
+            }
+            
+            const height = parseFloat(heightInput.value);
+            if (!height || height < 100 || height > 250) {
+                showAlert('error', 'Please enter a valid height between 100-250 cm');
+                isValid = false;
+            }
+            
+            if (!isValid) {
+                return;
+            }
+            
+            // Show loading state
+            analyzeBtn.innerHTML = '<span class="spinner"></span>Analyzing...';
+            analyzeBtn.disabled = true;
+            progressBar.style.display = 'block';
+            
+            // Prepare form data for upload
+            const formData = new FormData();
+            formData.append('front_view', frontImageInput.files[0]);
+            formData.append('side_view', sideImageInput.files[0]);
+            formData.append('height', height);
+            
+            // Simulate analysis progress
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += Math.random() * 10;
+                if (progress > 90) progress = 90; // Stop at 90% until real response
+                
+                progressFill.style.width = progress + '%';
+            }, 200);
+            
+            // Submit to backend
+            fetch('/api/analyze', {
+                method: 'POST',
+                credentials: 'include',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                clearInterval(progressInterval);
+                progressFill.style.width = '100%';
+                
+                if (data.success) {
+                    showAlert('success', 'Analysis complete! Processing results...');
+                    
+                    setTimeout(() => {
+                        // Store analysis ID for future use
+                        if (data.analysis_id) {
+                            sessionStorage.setItem('analysisId', data.analysis_id);
+                        }
+                        
+                        // Redirect to output page to show results
+                        window.location.href = `/output.html?analysis_id=${data.analysis_id}`;                    }, 2000);
+                } else {
+                    showAlert('error', data.message || 'Analysis failed. Please try again.');
+                    analyzeBtn.innerHTML = '🔍 Analyze My Style';
+                    analyzeBtn.disabled = false;
+                    progressBar.style.display = 'none';
+                }
+            })
+            .catch(error => {
+                clearInterval(progressInterval);
+                console.error('Error:', error);
+                showAlert('error', 'An error occurred during analysis. Please try again.');
+                analyzeBtn.innerHTML = '🔍 Analyze My Style';
+                analyzeBtn.disabled = false;
+                progressBar.style.display = 'none';
+            });
+        });
+
+        // Initialize with info message
+        setTimeout(() => {
+            showAlert('info', 'Please upload clear, well-lit photos for the best analysis results.');
+        }, 1000);
+    </script>
+</body>
+</html>
+
+
+

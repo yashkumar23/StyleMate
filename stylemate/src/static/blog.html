@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Trends - STYLEMATE</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* Left Section - Branding */
+        .left-section {
+            flex: 1;
+            background: linear-gradient(135deg, #008080 0%, #006666 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .left-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="15" height="15" patternUnits="userSpaceOnUse"><path d="M 15 0 L 0 0 0 15" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.4;
+        }
+
+        .branding-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            filter: brightness(0) invert(1);
+        }
+
+        .branding-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .branding-subtitle {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Right Section - Blog Content */
+        .right-section {
+            flex: 1.5;
+            display: flex;
+            flex-direction: column;
+            padding: 60px;
+            background: white;
+            max-width: 800px;
+            overflow-y: auto;
+        }
+
+        .blog-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .blog-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .blog-subtitle {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .blog-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .blog-post {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #e1e5e9;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 128, 128, 0.15);
+        }
+
+        .blog-post-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #008080 0%, #006666 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .blog-post-content {
+            padding: 24px;
+        }
+
+        .blog-post-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .blog-post-date {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .blog-post-category {
+            background: #008080;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .blog-post-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .blog-post-summary {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .blog-post-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .read-more-btn {
+            background: linear-gradient(135deg, #008080 0%, #006666 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .read-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 128, 128, 0.3);
+        }
+
+        .blog-post-stats {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .loading-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #e1e5e9;
+            border-top: 3px solid #008080;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .left-section {
+                padding: 40px 30px;
+                min-height: 300px;
+            }
+            
+            .right-section {
+                padding: 40px 30px;
+            }
+            
+            .branding-title {
+                font-size: 36px;
+            }
+            
+            .blog-title {
+                font-size: 28px;
+            }
+            
+            .blog-post-image {
+                height: 150px;
+            }
+        }
+
+        /* Animations */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .branding-content {
+            animation: slideInLeft 0.8s ease;
+        }
+
+        .right-section {
+            animation: slideInRight 0.8s ease;
+        }
+
+        .blog-post {
+            animation: fadeInUp 0.6s ease;
+            animation-fill-mode: both;
+        }
+
+        .blog-post:nth-child(1) { animation-delay: 0.1s; }
+        .blog-post:nth-child(2) { animation-delay: 0.2s; }
+        .blog-post:nth-child(3) { animation-delay: 0.3s; }
+        .blog-post:nth-child(4) { animation-delay: 0.4s; }
+        .blog-post:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <!-- Left Section - Branding -->
+    <div class="left-section">
+        <div class="branding-content">
+            <div class="logo">
+                <img src="/hanger-icon.png" alt="Hanger" class="logo-icon">
+                <span>StyleMate</span>
+            </div>
+            
+            <h1 class="branding-title">Fashion Trends</h1>
+            <p class="branding-subtitle">Stay updated with the latest fashion trends and style insights</p>
+            
+            <a href="/dashboard.html" class="back-btn">
+                ← Back to Dashboard
+            </a>
+        </div>
+    </div>
+
+    <!-- Right Section - Blog Content -->
+    <div class="right-section">
+        <div class="blog-header">
+            <h2 class="blog-title">Latest Fashion Trends</h2>
+            <p class="blog-subtitle">Discover the newest styles and fashion insights</p>
+        </div>
+
+        <!-- Loading State -->
+        <div class="loading-state" id="loadingState">
+            <div class="loading-spinner"></div>
+            <p>Loading latest trends...</p>
+        </div>
+
+        <!-- Blog Posts Container -->
+        <div class="blog-posts" id="blogPosts" style="display: none;">
+            <!-- Blog posts will be dynamically loaded here -->
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <div class="empty-state-icon">📝</div>
+            <h3>No Blog Posts Yet</h3>
+            <p>Check back soon for the latest fashion trends and style insights!</p>
+        </div>
+    </div>
+
+    <script>
+        // Sample blog data for testing and initial display
+        const sampleBlogPosts = [
+            {
+                id: 1,
+                title: "Spring 2024: Pastel Colors Are Making a Comeback",
+                summary: "Discover how soft pastels are dominating the fashion scene this spring. From lavender blazers to mint green accessories, learn how to incorporate these trending colors into your wardrobe.",
+                category: "Color Trends",
+                date: "2024-03-15",
+                image: "/blog-images/pastel-trends.jpg",
+                readTime: "5 min read",
+                views: 1250,
+                likes: 89
+            },
+            {
+                id: 2,
+                title: "Sustainable Fashion: Building an Eco-Friendly Wardrobe",
+                summary: "Learn how to create a sustainable wardrobe without compromising on style. We explore eco-friendly brands, timeless pieces, and tips for reducing your fashion footprint.",
+                category: "Sustainability",
+                date: "2024-03-12",
+                image: "/blog-images/sustainable-fashion.jpg",
+                readTime: "7 min read",
+                views: 2100,
+                likes: 156
+            },
+            {
+                id: 3,
+                title: "Body Type Styling: Dressing for Your Apple Shape",
+                summary: "Expert tips and tricks for apple-shaped body types. Discover the best silhouettes, patterns, and styling techniques to enhance your natural beauty and boost confidence.",
+                category: "Body Styling",
+                date: "2024-03-10",
+                image: "/blog-images/apple-body-styling.jpg",
+                readTime: "6 min read",
+                views: 1800,
+                likes: 134
+            },
+            {
+                id: 4,
+                title: "Accessory Trends 2024: Statement Jewelry Takes Center Stage",
+                summary: "From chunky gold chains to colorful resin earrings, explore the accessory trends that are defining 2024. Learn how to style statement pieces for maximum impact.",
+                category: "Accessories",
+                date: "2024-03-08",
+                image: "/blog-images/statement-jewelry.jpg",
+                readTime: "4 min read",
+                views: 950,
+                likes: 67
+            },
+            {
+                id: 5,
+                title: "Workplace Fashion: Professional Looks That Make an Impact",
+                summary: "Elevate your professional wardrobe with these modern workplace fashion tips. From power dressing to business casual, find your perfect office style.",
+                category: "Professional",
+                date: "2024-03-05",
+                image: "/blog-images/workplace-fashion.jpg",
+                readTime: "8 min read",
+                views: 1650,
+                likes: 112
+            }
+        ];
+
+        // Function to format date
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+
+        // Function to render blog posts
+        function renderBlogPosts(posts) {
+            const blogPostsContainer = document.getElementById('blogPosts');
+            const loadingState = document.getElementById('loadingState');
+            const emptyState = document.getElementById('emptyState');
+
+            if (posts.length === 0) {
+                loadingState.style.display = 'none';
+                emptyState.style.display = 'block';
+                blogPostsContainer.style.display = 'none';
+                return;
+            }
+
+            const postsHTML = posts.map(post => `
+                <article class="blog-post">
+                    <div class="blog-post-image">
+                        📸 ${post.title}
+                    </div>
+                    <div class="blog-post-content">
+                        <div class="blog-post-meta">
+                            <span class="blog-post-date">
+                                📅 ${formatDate(post.date)}
+                            </span>
+                            <span class="blog-post-category">${post.category}</span>
+                        </div>
+                        <h3 class="blog-post-title">${post.title}</h3>
+                        <p class="blog-post-summary">${post.summary}</p>
+                        <div class="blog-post-actions">
+                            <a href="#" class="read-more-btn" onclick="readMore(${post.id})">
+                                Read More →
+                            </a>
+                            <div class="blog-post-stats">
+                                <span class="stat-item">
+                                    👁️ ${post.views}
+                                </span>
+                                <span class="stat-item">
+                                    ❤️ ${post.likes}
+                                </span>
+                                <span class="stat-item">
+                                    ⏱️ ${post.readTime}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+
+            blogPostsContainer.innerHTML = postsHTML;
+            loadingState.style.display = 'none';
+            emptyState.style.display = 'none';
+            blogPostsContainer.style.display = 'flex';
+        }
+
+        // Function to load blog posts from backend
+        async function loadBlogPosts() {
+            try {
+                const response = await fetch('/api/blog/posts');
+                const data = await response.json();
+                
+                if (data.success && data.posts) {
+                    renderBlogPosts(data.posts);
+                } else {
+                    // Fallback to sample data for testing
+                    console.log('Using sample blog data for testing');
+                    setTimeout(() => {
+                        renderBlogPosts(sampleBlogPosts);
+                    }, 1500); // Simulate loading time
+                }
+            } catch (error) {
+                console.error('Error loading blog posts:', error);
+                // Fallback to sample data
+                setTimeout(() => {
+                    renderBlogPosts(sampleBlogPosts);
+                }, 1500);
+            }
+        }
+
+        // Function to handle read more clicks
+        function readMore(postId) {
+            // This would typically navigate to a full blog post page
+            // For now, we'll show an alert
+            alert(`Opening full blog post with ID: ${postId}`);
+            
+            // In a real implementation, you might do:
+            // window.location.href = `/blog/post/${postId}`;
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadBlogPosts();
+        });
+
+        // Refresh blog posts every 30 seconds to check for new content
+        setInterval(loadBlogPosts, 30000);
+    </script>
+</body>
+</html>
+

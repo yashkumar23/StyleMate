@@ -1,0 +1,32 @@
+
+--- Body Measurements Results ---
+User Height: 162.00 cm
+Shoulder Width Cm: 40.47 cm
+Arm Length Cm: 58.17 cm
+Leg Length Cm: 94.31 cm
+Waist Circumference Cm: 86.48 cm
+Hip Circumference Cm: 87.08 cm
+Chest Circumference Cm: 95.02 cm
+Thigh Circumference Cm: 56.11 cm
+Neck Waist Length Front Cm: 47.25 cm
+Neck Circumference Cm: 36.39 cm
+---------------------------------
+Results for Front View Image:
+  Skin Tone: Medium Neutral
+  Detected Gender: Male (Confidence: 0.94)
+  Dominant Color (Hex): #BE9686
+  Recommendations for Medium Neutral:
+    Best colors to wear: Red, Green, Purple, Teal, Navy, Brown, Olive, Mustard, Grey
+    Avoid: Lavender, Pink, Peach
+------------------------------------------
+
+--- Garment Size Categorization ---
+  Sherwani: S
+  Man Kurta: S
+  Nehru Jackets: S
+-----------------------------------
+
+--- Final Garment Size Recommendations ---
+Sherwani: S
+Man Kurta: S
+Nehru Jackets: S
