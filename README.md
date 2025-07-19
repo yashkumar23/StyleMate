@@ -25,36 +25,9 @@ To run this notebook locally, you will need Python installed.
 
 ## 🚀 Approach
 
-My approach to credit risk prediction involved the following steps:
+My approach to develop StyleMate involved the following steps:
 
-- **Library Import**: Imported essential Python libraries for data manipulation
-  (pandas, numpy), visualization (matplotlib, seaborn), and machine learning
-  (sklearn).
-  
-- **Data Loading**: Loaded the `train.csv`  dataset into a pandas DataFrame.
 
-- **Data Cleaning and Preparation**:
-  - **Handle Missing Values**: Categorical features were imputed using the mode,
-    and numerical features (like `LoanAmount` ) were imputed using the median.
-  - **Encode Categorical Variables**: Binary categorical variables were transformed
-    using `LabelEncoder` , while multiclass variables were converted using one-
-    hot encoding ( `pd.get_dummies` ).
-    
-- **Exploratory Data Analysis (EDA)**: Analyzed feature distributions and their
-    relationships with the `Loan_Status`  target variable. A key visualization included
-    plotting `Credit_History`  against `Loan_Status`  to understand their correlation.
-  
-- **Model Training and Testing**:
-    The dataset was split into training and testing sets (80/20 split).
-  - **Random Forest Classifier**: A Random Forest model was trained with 
-      `max_depth=5` .
-  - **Logistic Regression**: A Logistic Regression model was trained for binary
-      classification.
-  - **Decision Tree**: A Decision Tree Classifier was trained.
-
-- **Model Evaluation**: Evaluated the trained models using accuracy score, confusion
-    matrices, and classification reports to assess their performance in predicting loan
-    approval.
 
 ## 🧰 Technologies Used
 - P Y T H O N
@@ -66,30 +39,33 @@ My approach to credit risk prediction involved the following steps:
 - R O B O F L O W
 - O P E N C V
 
-## 📊 Results and Insights
+## 📊 Results
+<img width="940" height="440" alt="image" src="https://github.com/user-attachments/assets/56d7bcf4-36bb-4421-8a62-5022621947f6" />
 
-### Key Insights:
-  - **Credit History Impact**: The analysis clearly showed that credit history is a strong 
-      predictor of loan approval. Applicants with a good credit history (Credit_History = 1) had 
-      a significantly higher chance of loan approval, while those with a bad credit history 
-      (Credit_History = 0) were mostly rejected.
-  - **Model Performance**: The Logistic Regression model achieved an accuracy of `(78.86%)`, 
-      outperforming the Decision Tree model `(69.11%)`. This indicates that Logistic Regression 
-      is more suitable for this dataset given the features and their relationships.
-  - **Confusion Matrices**: The confusion matrices for both models provided a detailed 
-      breakdown of `true positives`, `true negatives`, `false positives`, and `false negatives`, offering 
-      insights into where each model performed well and where it struggled.
+<img width="940" height="445" alt="image" src="https://github.com/user-attachments/assets/6e0db39b-f4af-405e-89f6-a745d0d351ee" />
+
+<img width="940" height="446" alt="image" src="https://github.com/user-attachments/assets/abaf967d-604a-482e-9823-01da693ffe30" />
+
+<img width="940" height="454" alt="image" src="https://github.com/user-attachments/assets/a6be77e1-4c07-42c7-8d45-ab114788640d" />
+
+<img width="714" height="991" alt="image" src="https://github.com/user-attachments/assets/ba602192-7d71-4ed8-bde1-3244ae65fa14" />
+
+<img width="940" height="449" alt="image" src="https://github.com/user-attachments/assets/fd2d46ce-24c4-40f3-a8cd-bc992a46e3b9" />
+
+
+
+
+
+
     
 ### Final Outcome:
-  - The project successfully demonstrates a workflow for credit risk prediction, from data preprocessing to model evaluation.
-  - The Logistic Regression model proved to be effective in predicting loan approval status based on the given features. 
-  - Further improvements could involve hyperparameter tuning or exploring more advanced ensemble methods.
+  - The project successfully demonstrates an AI based Personalized Fashion Assistant Webapp which suggests the user's their personalized fashion based on their physical attributes.
 
 ## 🧪 Usage
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/StyleMatw.git
+git clone https://github.com/your-username/StyleMate.git
 
 # 2. Navigate to the project directory
 cd stylemate
