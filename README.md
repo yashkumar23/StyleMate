@@ -23,6 +23,7 @@ The dataset contains full human body images equally distributed among male and f
 
 To run this notebook locally, you will need Python installed. 
 
+
 ## 🧰 Technologies Used
 - P Y T H O N
 - N U M P Y
@@ -61,13 +62,24 @@ git clone https://github.com/yashkumar23/StyleMate.git
 # 2. Navigate to the project directory
 cd stylemate
 
-# 3. Open the cmd to activate the environment 
+# 3. Create a Virtual Environment with Python 3.8.10
+Make sure you have Python 3.8.10 installed.
+
+# Windows
+python -m venv venv
+
+# macOS/Linux
+python3.8 -m venv venv
+
+# 4. Activate the environment 
 venv\Scripts\activate
 
-# 4. install flask-migrate
-pip install flask_migrate
+# 5. Install Required Libraries
+If a requirements.txt file exists:
 
-# 5. Run the App
+pip install -r requirements.txt
+
+# 6. Run the App
 python -m src.main 
 ```
 
