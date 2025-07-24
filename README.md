@@ -65,6 +65,8 @@ cd stylemate
 # 3. Create a Virtual Environment with Python 3.8.10
 Make sure you have Python 3.8.10 installed.
 
+if already a venv environment variable exists Delete it and Create a new one
+
 # Windows
 python -m venv venv
 
