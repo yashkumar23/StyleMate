@@ -1,265 +1,97 @@
-# STYLEMATE - AI Fashion Assistant
+# StyleMate - An AI Powered Personalized Fashion Assistant
 
-## 🎯 Project Overview
+## 📌 Project Overview & Task Objective
 
-STYLEMATE is a modern AI-powered fashion assistant web application that provides personalized style recommendations based on user's physical attributes like skin tone, body measurements, and body type. The application features a sleek, desktop-optimized design with robust user authentication and body analysis capabilities.
+The project focused on 
+suggesting personalized fashion to users based on their physical attributes like skintone, gender and body measurments. The 
+primary objective is to build a AI based personalized fashion App that can accurately determine 
+what suits better to a user considering their physical attributes.
 
-## ✨ Features Implemented
+## 📂 Dataset Information
 
-### 🎨 **Design & UI**
-- **Simple & Sleek Design**: Clean, modern interface inspired by contemporary fashion apps
-- **Desktop-Optimized**: Split-screen layouts perfect for web browsers
-- **Teal Color Scheme**: Professional #008080 teal with white and grey accents
-- **Hanger Icon Logo**: Custom logo with clothing hanger icon
-- **Responsive Design**: Adapts to different screen sizes
+The project utilizes the custom built datasets for skintone and gender detection, for body measurement we have used the TrainingDataPro/body-measurements-dataset from huggingface and indofashion dataset for clothing recommendations.
+The dataset contains full human body images equally distributed among male and female gender.  
 
-### 🔐 **Authentication System**
-- **User Registration**: Complete signup flow with validation
-- **Secure Login**: Password hashing with Werkzeug
-- **Database Integration**: SQLite database for user storage
-- **Session Management**: Flask sessions with remember me functionality
-- **Skip Option**: Direct dashboard access without login
-- **Password Strength Checker**: Real-time password validation
+## ✨ Features
 
-### 📸 **Body Analysis System**
-- **Image Upload**: Front and side-view photo upload with drag & drop
-- **File Validation**: Size and format validation (JPG, PNG, WebP up to 10MB)
-- **Height Input**: Interactive height input with slider (100-250 cm)
-- **Progress Tracking**: Real-time upload and analysis progress
-- **AI Integration Ready**: Backend API prepared for AI model integration
+- Skintone Detection.
+- Gender Detection.
+- Body Measurements Detection.
+- CLothing recommendations based on these physical attributes.
 
-### 📱 **Pages Implemented**
-1. **Homepage**: Welcome screen with call-to-action
-2. **Signup Page**: User registration with form validation
-3. **Signin Page**: Authentication with Skip button
-4. **Dashboard**: User dashboard with analysis access
-5. **Body Analysis**: Image upload and measurement input page
+## 🛠️ Installation
 
-## 🛠 **Technical Stack**
+To run this notebook locally, you will need Python installed. 
 
-### Backend
-- **Flask**: Python web framework
-- **SQLAlchemy**: Database ORM
-- **Werkzeug**: Password hashing and security
-- **Flask-CORS**: Cross-origin resource sharing
-- **SQLite**: Database storage
 
-### Frontend
-- **HTML5**: Semantic markup
-- **CSS3**: Modern styling with animations
-- **JavaScript**: Form validation and interactions
-- **Responsive Design**: Mobile-first approach
+## 🧰 Technologies Used
+- P Y T H O N
+- N U M P Y
+- M A T P L O T L I B
+- F l A S K
+- S E A B O R N
+- S C I K I T - L E A R N
+- M E D I A P I P E
+- R O B O F L O W
+- O P E N C V
 
-## 🚀 **Installation & Setup**
+## 📊 Results
+<img width="940" height="440" alt="image" src="https://github.com/user-attachments/assets/56d7bcf4-36bb-4421-8a62-5022621947f6" />
 
-### Prerequisites
-- Python 3.11+
-- Virtual environment support
+<img width="940" height="445" alt="image" src="https://github.com/user-attachments/assets/6e0db39b-f4af-405e-89f6-a745d0d351ee" />
 
-### Quick Start
+<img width="940" height="446" alt="image" src="https://github.com/user-attachments/assets/abaf967d-604a-482e-9823-01da693ffe30" />
+
+<img width="940" height="454" alt="image" src="https://github.com/user-attachments/assets/a6be77e1-4c07-42c7-8d45-ab114788640d" />
+
+<img width="714" height="991" alt="image" src="https://github.com/user-attachments/assets/ba602192-7d71-4ed8-bde1-3244ae65fa14" />
+
+<img width="940" height="449" alt="image" src="https://github.com/user-attachments/assets/fd2d46ce-24c4-40f3-a8cd-bc992a46e3b9" />
+
+
+    
+### Final Outcome:
+  - The project successfully demonstrates an AI based Personalized Fashion Assistant Webapp which suggests the user's their personalized fashion based on their physical attributes.
+
+## 🧪 Usage
+
 ```bash
-# Extract the project
-tar -xzf stylemate_with_analysis.tar.gz
+# 1. Clone the repository
+git clone https://github.com/yashkumar23/StyleMate.git
+
+# 2. Navigate to the project directory
 cd stylemate
 
-# Create virtual environment
+# 3. Create a Virtual Environment with Python 3.8.10
+Make sure you have Python 3.8.10 installed.
+
+if already a venv environment variable exists Delete it and Create a new one
+
+# Windows
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# Install dependencies
-pip install flask flask-sqlalchemy flask-cors werkzeug
+# macOS/Linux
+python3.8 -m venv venv
 
-# Run the application
-cd src
-python main.py
+# 4. Activate the environment 
+venv\Scripts\activate
+
+# 5. Install Required Libraries
+If a requirements.txt file exists:
+
+pip install -r requirements.txt
+
+# 6. Run the App
+python -m src.main 
 ```
 
-### Access the Application
-- **Homepage**: http://127.0.0.1:5000
-- **Signup**: http://127.0.0.1:5000/signup.html
-- **Signin**: http://127.0.0.1:5000/signin.html
-- **Dashboard**: http://127.0.0.1:5000/dashboard.html
-- **Body Analysis**: http://127.0.0.1:5000/analysis.html
+## 🤝 Contributing
 
-## 🔄 **User Flow**
+Contributions are welcome! If you have any suggestions or improvements, please open 
+an issue or submit a pull request.
 
-### Registration & Authentication Flow
-1. User visits homepage
-2. Clicks "Get Started" → Redirects to signup
-3. Fills registration form with validation
-4. Account created → Redirects to signin
-5. User signs in → Redirects to dashboard
-6. **Alternative**: Skip signin → Direct dashboard access
+## 📬 Contact
 
-### Body Analysis Flow
-1. User accesses dashboard
-2. Clicks "Start Body Analysis"
-3. Uploads front and side-view photos
-4. Enters height measurement
-5. Clicks "Analyze My Style"
-6. System processes images and data
-7. Results displayed (ready for AI integration)
-
-## 🗄️ **Database Schema**
-
-### Users Table
-```sql
-- id (Primary Key)
-- first_name (String, 50 chars)
-- last_name (String, 50 chars)
-- email (String, 120 chars, Unique)
-- password_hash (String, 255 chars)
-- created_at (DateTime)
-- updated_at (DateTime)
-- is_active (Boolean)
-```
-
-## 🔒 **Security Features**
-
-- **Password Hashing**: Werkzeug secure password hashing
-- **Input Validation**: Client and server-side validation
-- **File Upload Security**: Type and size validation
-- **CSRF Protection**: Flask session security
-- **SQL Injection Prevention**: SQLAlchemy ORM protection
-- **XSS Protection**: Proper input sanitization
-
-## 📋 **API Endpoints**
-
-### Authentication Routes
-- `POST /api/signup` - User registration
-- `POST /api/signin` - User login
-- `POST /api/logout` - User logout
-- `GET /api/user` - Get current user
-- `POST /api/check-email` - Check email availability
-
-### Body Analysis Routes
-- `POST /api/analyze` - Submit body analysis request
-- `GET /api/analysis/<id>` - Get analysis results
-- `GET /api/upload-progress` - Get upload progress
-
-### Static Routes
-- `GET /` - Homepage
-- `GET /signup.html` - Signup page
-- `GET /signin.html` - Signin page
-- `GET /dashboard.html` - Dashboard page
-- `GET /analysis.html` - Body analysis page
-
-## 🧪 **Testing**
-
-### Demo Credentials
-- **Email**: demo@stylemate.com
-- **Password**: demo123
-
-### Test User Created
-- **Email**: john.doe@test.com
-- **Password**: TestPass123!
-
-### Body Analysis Testing
-1. Navigate to `/analysis.html`
-2. Upload test images (JPG/PNG format)
-3. Set height value (100-250 cm)
-4. Click "Analyze My Style"
-5. Verify upload and processing
-
-## 🎯 **AI Integration Ready**
-
-### Backend API Structure
-The `/api/analyze` endpoint is prepared for AI model integration:
-
-```python
-# Current mock response structure
-analysis_result = {
-    'body_type': 'Athletic',
-    'skin_tone': 'Medium',
-    'recommended_styles': [...],
-    'color_palette': [...],
-    'confidence_score': 0.92
-}
-```
-
-### File Storage
-- Uploaded images saved to `uploads/` directory
-- Unique filenames with timestamps
-- Ready for AI model processing
-
-## 🎨 **Design Features**
-
-### Body Analysis Page
-- **Split-screen Layout**: Branding on left, form on right
-- **Step-by-step Guide**: Visual progress indicators
-- **Drag & Drop Upload**: Intuitive file upload areas
-- **Interactive Height Input**: Slider with real-time sync
-- **Progress Animation**: Loading states and feedback
-- **Responsive Design**: Works on all screen sizes
-
-### Visual Elements
-- **Animated Backgrounds**: Subtle grid patterns
-- **Hover Effects**: Interactive button states
-- **Loading Spinners**: Professional loading indicators
-- **Color-coded Validation**: Visual feedback for inputs
-- **Smooth Transitions**: CSS animations throughout
-
-## 🚀 **Future Enhancements**
-
-### Planned Features
-- AI model integration for style recommendations
-- Results page with detailed analysis
-- User profile management
-- Style history and favorites
-- Social sharing features
-- Mobile app version
-
-### Technical Improvements
-- Production database (PostgreSQL)
-- Email verification system
-- Advanced file processing
-- Real-time analysis progress
-- Comprehensive testing suite
-- Docker containerization
-
-## 📁 **Project Structure**
-
-```
-stylemate/
-├── src/
-│   ├── main.py                 # Flask application entry point
-│   ├── models/
-│   │   └── user.py            # User model and database setup
-│   ├── routes/
-│   │   ├── auth.py            # Authentication routes
-│   │   └── analysis.py        # Body analysis routes
-│   ├── static/
-│   │   ├── index.html         # Homepage
-│   │   ├── signup.html        # Signup page
-│   │   ├── signin.html        # Signin page
-│   │   ├── analysis.html      # Body analysis page
-│   │   └── hanger-icon.png    # Logo icon
-│   └── uploads/               # Image upload directory
-├── venv/                      # Virtual environment (excluded)
-└── README.md                  # This file
-```
-
-## 🤝 **Contributing**
-
-1. Fork the repository
-2. Create feature branch
-3. Implement changes
-4. Add tests
-5. Submit pull request
-
-## 📄 **License**
-
-This project is proprietary software for STYLEMATE fashion assistant application.
-
-## 📞 **Support**
-
-For technical support or questions about the implementation, please refer to the code comments and documentation within the source files.
-
----
-
-**STYLEMATE** - Your Personalized Fashion Assistant
-*Powered by AI, Designed for Style*
-
-### 🎉 **Ready for AI Integration!**
-The body analysis system is fully implemented and ready for your AI models. Simply integrate your fashion recommendation algorithms with the `/api/analyze` endpoint to provide personalized style suggestions based on uploaded photos and measurements.
-
+For questions or collaboration:
+- GitHub: `yashkumar23`
+- Email: `yashchhatani7@gmail.com`.
